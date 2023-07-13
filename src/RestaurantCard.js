@@ -1,13 +1,16 @@
 import React from 'react'
+import{IMGURL} from"./Utility/constants"
 import "./RestaurantCard.css"
+
+
 function RestaurantCard({data}) {
   return (
     <div className="res-card">
-        <img src="" alt="res.name" className='res-logo'/>
-        <h3>{data.name}</h3>
-        <h4>res.cuisines</h4>
-        <h4>res.ratings</h4>
-        <h4>res.distance</h4>
+        <img src= { data.data.cloudinaryImageId} alt="res.name" className='res-logo'/>
+        <h3>{data.data.name}</h3>
+        <h4>{data.data.cuisines}</h4>
+        <h4>{data.data.avgRating} stars</h4>
+        <h4>{data.data.lastMileTravelString}</h4>
         
     </div>
   )
