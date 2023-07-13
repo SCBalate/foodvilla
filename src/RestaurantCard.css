@@ -1,0 +1,15 @@
+.res-card{
+    width:200px;
+    height:350px;
+    padding:5px;
+    background: #f0f0f0;
+    margin:5px;
+}
+
+.res-card:hover{
+    border:1px solid black;  
+}
+
+.res-logo{
+    width:100%;
+}
