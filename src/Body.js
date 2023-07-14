@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
+import Simmer from './ShimmerUI';
+
+
 
 function Body() {
   const [allRestaurent, setAllRestaurent] = useState([]);
@@ -15,11 +18,16 @@ function Body() {
     setAllRestaurent(json.data.cards[2].data.data.cards);
   };
 
-  return (
+ 
+
+  return allRestaurent.length === 0 ? (<Simmer/>) : (
+    
     <div className='body'>
+    
+
       <div className='search'>Search</div>
       <div className="res-container" style={{ padding: "10px", display: "flex", flexWrap: "wrap" }}>
-        {allRestaurent.map((x) => (<RestaurantCard key={x.data.id} data={x} />))}
+      {allRestaurent.map((x) => (<RestaurantCard key={x.data.id} data={x} />))}
       </div>
     </div>
   );
