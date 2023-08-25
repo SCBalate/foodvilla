@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Header.css"  
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
@@ -9,10 +10,10 @@ function Header() {
         </div>
         <div className="navLinks " >
             <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Contact Us</li>
-                <li>Cart</li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about us">About Us</Link></li>
+                <li><Link to="/contact us">Contact Us</Link></li>
+                <li><Link to="/cart">Cart</Link></li>
             </ul>
 
         </div>
