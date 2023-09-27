@@ -1,39 +1,39 @@
-import React,{useEffect, useState} from 'react';
+
 import { useParams } from 'react-router-dom';
+import{IMGURL} from"../Utility/constants"
+import "../App.css"
+import useRestaurentMenu from '../Utility/useRestaurentMenu';
 
 const RestaurentDetails = () => {
-  const[allrestaurent, setAllRestaurent] = useState([]);
+ 
   const { id } = useParams();
 
   
-  useEffect(() => {
-    fetchData();
-  }, []);
+ 
 
-  const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.15667&lng=74.69668639999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    const json = await data?.json();
-   
-    setAllRestaurent(json?.data);
-    console.log(allrestaurent)
-   
-  };
-  const restaurant = allrestaurent?.filter((restaurant) => restaurant?.info?.id.toString() === id); 
+  const allrestaurent = useRestaurentMenu(id);
+
+  const restaurant = allrestaurent?.find((restaurant) => restaurant?.id.toString() === id); 
   console.log("restaurents" + restaurant);
 
-  if (!restaurant) {
+
+  if (!restaurant || restaurant.length === 0) {
     return <div>Restaurant not found.</div>;
   }
     
      
 
       return (
-        <div>
+        <div className='flex justify-center align-middle mt-8'>   
+        <div className='details-image-container rounded-xl'>
+        <img src= {IMGURL + restaurant?.cloudinaryImageId} alt={restaurant?.name} className='rounded-xl'/> 
+        </div>
+        <div className='details-data'>
         <h2>Details Page</h2>
-        {/* <h3>{restaurant?.name}</h3>
-        <p>ID: {restaurant?.id}</p>
-        <p>Address: {restaurant?.address}</p> */}
-        {/* Display other restaurant details */}
+        <h3 className=" text-lg">{ restaurant?.name}</h3>
+        <p className=' text-slate-400'> {restaurant?.cuisines}</p>
+        <p  className=' text-slate-400'> {restaurant?.areaName}</p> 
+        </div>
       </div>
       );
       
